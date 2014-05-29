@@ -1,6 +1,6 @@
 
 def get_tld_list():
-	gtld_array = {
+	tld_array = {
 		".aero"		: "whois.aero",
 		".arpa"		: "whois.iana.org",
 		".asia"		: "whois.nic.asia",
@@ -23,4 +23,4 @@ def get_tld_list():
 		".tel"		: "whois.nic.tel",
 		".travel"	: "whois.nic.travel"
 	}
-	return gtld_array
+	return tld_array

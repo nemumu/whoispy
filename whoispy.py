@@ -2,6 +2,7 @@ import socket
 import re
 import sys
 import tld
+import can_get
 
 OK = '\033[92m'
 FAIL = '\033[91m'
@@ -12,6 +13,7 @@ class Query:
 		self._raw_socket = ""
 		self._domain = domain
 		self._tld = ""
+		self._tldURL = ""
 		self._detail_array = {}
 		self._error_check = 1
 
@@ -36,14 +38,19 @@ class Query:
 		if not tld_list.has_key( self._tld ):
 			self._display_fail("Not Found TLD whois server")
 			return
+		
+		self._tldURL = tld_list.get( self._tld ) 
 
-		self._raw_socket = self._get_raw_socket( tld_list.get( self._tld ) , self._domain, 43)
+		self._raw_socket = self._get_raw_socket( self._tldURL , self._domain, 43)
+		print self._raw_socket
 
 		self._error_check = 0
 	
 	# check whether possible to acquire domain
-	'''
 	def get_vacant_bool(self):
+		return can_get.check(self._raw_socket, self._tldURL)
+
+		'''
 		if self._error_check == 1:
 			self._display_fail("Failed to get WHOIS DATA")
 			return -1
@@ -56,7 +63,7 @@ class Query:
 		
 		self._display_fail("No can Get")
 		return 0
-	'''
+		'''
 	
 	# Get Raw whois data
 	def get_raw_data(self):
