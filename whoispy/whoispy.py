@@ -42,7 +42,7 @@ class Query:
 		self._tldURL = tld_list.get( self._tld ) 
 
 		self._raw_socket = self._get_raw_socket( self._tldURL , self._domain, 43)
-		print self._raw_socket
+		#print self._raw_socket
 
 		self._error_check = 0
 	

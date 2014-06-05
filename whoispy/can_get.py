@@ -1,7 +1,6 @@
 import re
 
 def check(raw_data, tld_addr):	
-	print tld_addr
 	if tld_addr == "whois.aero":
 		return aero_check(raw_data)
 	elif tld_addr == "whois.iana.org":
@@ -47,7 +46,7 @@ def cat_check(raw_data):
 	return regex_support(raw_data, "Domain ID:")
 
 def com_check(raw_data):
-	return regex_support(raw_data, "Domain Name:")
+	return ~regex_support(raw_data, "No match for") + 2
 
 def regex_support(raw_data, regex_word):
 	regex = re.compile(regex_word)
