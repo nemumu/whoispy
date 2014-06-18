@@ -30,7 +30,7 @@ class Query:
 		if match:
 			self._tld = match.group()
 		else:
-			self._display_safe("Not found TLD")
+			self._display_fail("Not found TLD")
 			return
 
 		# Get TLD List
@@ -102,12 +102,12 @@ class Query:
 
 	# Display method
 	def _display_fail(self, msg):
-		sys.stdout.write('\033[91m')
+		sys.stdout.write( FAIL )
 		sys.stdout.write("%s\n" % msg)
-		sys.stdout.write('\033[0m')
+		sys.stdout.write( ENDC )
 
 	def _display_safe(self, msg):
-		sys.stdout.write('\033[92m')
+		sys.stdout.write( OK )
 		sys.stdout.write("%s\n" % msg)
-		sys.stdout.write('\033[0m')
+		sys.stdout.write( ENDC )
 
