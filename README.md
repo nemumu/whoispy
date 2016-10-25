@@ -1,4 +1,4 @@
 whoispy
 =======
 
-Python module/library to get the WHOIS information
+Python package to get WHOIS information
