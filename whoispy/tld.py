@@ -1,5 +1,5 @@
-def get_tld_list():
-    tld_array = {
+def get_tldDict():
+    tldDict = {
         ".aero"		: "whois.aero",
         ".arpa"		: "whois.iana.org",
         ".asia"		: "whois.nic.asia",
@@ -22,4 +22,4 @@ def get_tld_list():
         ".tel"		: "whois.nic.tel",
         ".travel"	: "whois.nic.travel"
     }
-    return tld_array
+    return tldDict
