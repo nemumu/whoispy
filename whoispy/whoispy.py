@@ -15,7 +15,6 @@ class Query:
         self._tldName = ""
         self._whoisAddr = ""
         self._detailTuple = {}
-        self._errorCheck = 1
         
         regex = re.compile('.+\..+')
         match = regex.search(self._domainName)
@@ -41,44 +40,14 @@ class Query:
 
         self._whoisAddr = tldDict.get( self._tldName ) 
         self._sockMsg = self._get_sockMsg( self._whoisAddr , self._domainName, 43)
-        self._errorCheck = 0
     
     # check whether possible to acquire domain
     def get_vacant_bool(self):
         return can_get.check(self._sockMsg, self._whoisAddr)
         
-        '''
-        if self._errorCheck == 1:
-            self._display_fail("Failed to get WHOIS DATA")
-            return -1
-            
-            regex = re.compile("No match for \"%s\"\." % self._domain.upper())
-            match = regex.search(self._sockMsg)
-            if match:
-                self._display_safe("Yes can Get")
-                return 1
-                
-            self._display_fail("No can Get")
-            return 0
-        '''
-        
     # Get Raw whois data
     def get_rawData(self):
         return self._sockMsg
-
-    '''
-    def get_detail(self):
-        if self._errorCheck == 1:
-            return self._detailTuple
-            
-        for match in re.finditer(".+:.*", self._sockMsg, re.MULTILINE):
-            row_str = match.group()
-            option_index = row_str.split(':')[0]
-            option_value = row_str.split(':')[1]
-            self._detailTuple.update( {option_index : option_value} )
-        
-        return self._detailTuple
-    '''
     
     # Get raw data method
     def _get_sockMsg(self, server, msg, port=43):
