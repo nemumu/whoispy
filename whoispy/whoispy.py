@@ -2,7 +2,7 @@ import socket
 import re
 import sys
 import tld
-import can_get
+import whoispy_parser
 
 OK = '\033[92m'
 FAIL = '\033[91m'
@@ -43,7 +43,7 @@ class Query:
     
     # check whether possible to acquire domain
     def get_vacant_bool(self):
-        return can_get.check(self._sockMsg, self._whoisAddr)
+        return whoispy_parser.check(self._sockMsg, self._whoisAddr)
         
     # Get Raw whois data
     def get_rawData(self):
