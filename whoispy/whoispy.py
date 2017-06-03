@@ -43,7 +43,7 @@ class Query:
     
     # check whether possible to acquire domain
     def get_vacant_bool(self):
-        return whoispy_parser.check(self._sockMsg, self._whoisAddr)
+        return whoispy_parser.parse(self._sockMsg, self._whoisAddr)
         
     # Get Raw whois data
     def get_rawData(self):
