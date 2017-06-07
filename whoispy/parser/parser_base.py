@@ -2,6 +2,10 @@ from abc import *
 import re
 
 class parser_base(metaclass=ABCMeta):
+
+    def __init__(self, raw_data):
+        self.data = raw_data
+
     @abstractmethod
     def domadinName():
         pass
