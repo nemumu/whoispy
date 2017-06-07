@@ -7,7 +7,7 @@ class parser_base(metaclass=ABCMeta):
         self.data = raw_data
 
     @abstractmethod
-    def domadinName():
+    def domainName(self):
         pass
 
     @abstractmethod
