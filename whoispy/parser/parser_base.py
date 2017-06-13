@@ -221,11 +221,3 @@ class parser_base(metaclass=ABCMeta):
     @abstractmethod
     def urlOfTheICANNWHOISDataProblemReportingSystem():
         pass
-
-def regex_support(raw_data, regex_word):
-    regex = re.compile(regex_word)
-    match = regex.search(raw_data)
-
-    if match:
-        return 0
-    return 1
