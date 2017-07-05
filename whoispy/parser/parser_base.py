@@ -3,221 +3,221 @@ import re
 
 class parser_base(metaclass=ABCMeta):
 
-    def __init__(self, raw_data):
-        self.data = raw_data
+    def __init__(self, rawData):
+        self.rawData = rawData
 
     @abstractmethod
     def domainName(self):
         pass
 
     @abstractmethod
-    def registryDomainID():
+    def registryDomainID(self):
         pass
 
     @abstractmethod
-    def registrarWHOISServer():
+    def registrarWHOISServer(self):
         pass
 
     @abstractmethod
-    def registrarURL():
+    def registrarURL(self):
         pass
 
     @abstractmethod
-    def updatedDate():
+    def updatedDate(self):
         pass
 
     @abstractmethod
-    def creationDate():
+    def creationDate(self):
         pass
 
     @abstractmethod
-    def registrarRegistrationExpirationDate():
+    def registrarRegistrationExpirationDate(self):
         pass
 
     @abstractmethod
-    def registrar():
+    def registrar(self):
         pass
 
     @abstractmethod
-    def registrarIANAID():
+    def registrarIANAID(self):
         pass
 
     @abstractmethod
-    def domainStatus():
+    def domainStatus(self):
         pass
 
     @abstractmethod
-    def registryRegistrantID():
+    def registryRegistrantID(self):
         pass
 
     @abstractmethod
-    def registrantName():
+    def registrantName(self):
         pass
 
     @abstractmethod
-    def registrantOrganization():
+    def registrantOrganization(self):
         pass
 
     @abstractmethod
-    def registrantStreet():
+    def registrantStreet(self):
         pass
 
     @abstractmethod
-    def registrantCity():
+    def registrantCity(self):
         pass
 
     @abstractmethod
-    def registrantStateProvince():
+    def registrantStateProvince(self):
         pass
 
     @abstractmethod
-    def registrantPostalCode():
+    def registrantPostalCode(self):
         pass
 
     @abstractmethod
-    def registrantCountry():
+    def registrantCountry(self):
         pass
 
     @abstractmethod
-    def registrantPhone():
+    def registrantPhone(self):
         pass
 
     @abstractmethod
-    def registrantPhoneExt():
+    def registrantPhoneExt(self):
         pass
 
     @abstractmethod
-    def registrantFax():
+    def registrantFax(self):
         pass
 
     @abstractmethod
-    def registrantFaxExt():
+    def registrantFaxExt(self):
         pass
 
     @abstractmethod
-    def registrantEmail():
+    def registrantEmail(self):
         pass
 
     @abstractmethod
-    def registryAdminID():
+    def registryAdminID(self):
         pass
 
     @abstractmethod
-    def adminName():
+    def adminName(self):
         pass
 
     @abstractmethod
-    def adminOrganization():
+    def adminOrganization(self):
         pass
 
     @abstractmethod
-    def adminStreet():
+    def adminStreet(self):
         pass
 
     @abstractmethod
-    def adminCity():
+    def adminCity(self):
         pass
 
     @abstractmethod
-    def adminStateProvince():
+    def adminStateProvince(self):
         pass
 
     @abstractmethod
-    def adminPostalCode():
+    def adminPostalCode(self):
         pass
 
     @abstractmethod
-    def adminCountry():
+    def adminCountry(self):
         pass
 
     @abstractmethod
-    def adminPhone():
+    def adminPhone(self):
         pass
 
     @abstractmethod
-    def adminPhoneExt():
+    def adminPhoneExt(self):
         pass
 
     @abstractmethod
-    def adminFax():
+    def adminFax(self):
         pass
 
     @abstractmethod
-    def adminFaxExt():
+    def adminFaxExt(self):
         pass
 
     @abstractmethod
-    def adminEmail():
+    def adminEmail(self):
         pass
 
     @abstractmethod
-    def registryTechID():
+    def registryTechID(self):
         pass
 
     @abstractmethod
-    def techName():
+    def techName(self):
         pass
 
     @abstractmethod
-    def techOrganization():
+    def techOrganization(self):
         pass
 
     @abstractmethod
-    def techStreet():
+    def techStreet(self):
         pass
 
     @abstractmethod
-    def techCity():
+    def techCity(self):
         pass
 
     @abstractmethod
-    def techStateProvince():
+    def techStateProvince(self):
         pass
 
     @abstractmethod
-    def techPostalCode():
+    def techPostalCode(self):
         pass
 
     @abstractmethod
-    def techCountry():
+    def techCountry(self):
         pass
 
     @abstractmethod
-    def techPhone():
+    def techPhone(self):
         pass
 
     @abstractmethod
-    def techPhoneExt():
+    def techPhoneExt(self):
         pass
 
     @abstractmethod
-    def techFax():
+    def techFax(self):
         pass
 
     @abstractmethod
-    def techFaxExt():
+    def techFaxExt(self):
         pass
 
     @abstractmethod
-    def techEmail():
+    def techEmail(self):
         pass
 
     @abstractmethod
-    def nameServer():
+    def nameServer(self):
         pass
 
     @abstractmethod
-    def DNSSEC():
+    def DNSSEC(self):
         pass
 
     @abstractmethod
-    def registrarAbuseContactEmail():
+    def registrarAbuseContactEmail(self):
         pass
 
     @abstractmethod
-    def registrarAbuseContactPhone():
+    def registrarAbuseContactPhone(self):
         pass
 
     @abstractmethod
-    def urlOfTheICANNWHOISDataProblemReportingSystem():
+    def urlOfTheICANNWHOISDataProblemReportingSystem(self):
         pass
