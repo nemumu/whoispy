@@ -19,7 +19,7 @@ class Query:
         match = regex.search(self._domainName)
         if not match:
             # Invalid domain
-            self._display_fail("Invalil domain format")
+            self._display_fail("Invalid domain format")
             return None
 
         # Divice TLD
