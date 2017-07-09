@@ -1,8 +1,8 @@
 import socket
 import re
 import sys
-import tld
-import whoispy_parser
+import whoisSrvDict
+import parser_branch
 
 OK = '\033[92m'
 FAIL = '\033[91m'
@@ -11,17 +11,16 @@ ENDC = '\033[0m'
 class Query:
     def __init__(self, domainName):
         self._domainName = domainName
-        self._sockMsg = ""
+        self._rawMsg = ""
         self._tldName = ""
-        self._whoisAddr = ""
-        self._detailTuple = {}
-        
+        self._whoisSrvAddr = ""
+
         regex = re.compile('.+\..+')
         match = regex.search(self._domainName)
         if not match:
             # Invalid domain
-            self._display_fail("Invalil domain")
-            return
+            self._display_fail("Invalil domain format")
+            return None
 
         # Divice TLD
         regex = re.compile('\..+')
@@ -29,28 +28,24 @@ class Query:
         if match:
             self._tldName = match.group()
         else:
-            self._display_fail("Not found TLD")
-            return
+            self._display_fail("Can not parse TLD")
+            return None
         
         # Get TLD List
-        tldDict = tld.get_tldDict()
-        if not (self._tldName in tldDict):
+        if not (self._tldName in whoisSrvDict.get_whoisSrvDict()):
             self._display_fail("Not Found TLD whois server")
-            return
+            return None
 
-        self._whoisAddr = tldDict.get( self._tldName ) 
-        self._sockMsg = self._get_sockMsg( self._whoisAddr , self._domainName, 43)
-    
-    # check whether possible to acquire domain
-    def get_vacant_bool(self):
-        return whoispy_parser.parse(self._sockMsg, self._whoisAddr)
+        self._whoisSrvAddr = whoisSrvDict.get_whoisSrvDict().get(self._tldName)
+        self._rawMsg = self._get_rawMsg(self._whoisSrvAddr , self._domainName, 43)
+        return parser_branch.parse(self._rawMsg, self._whoisSrvAddr)
         
     # Get Raw whois data
     def get_rawData(self):
-        return self._sockMsg
+        return self._rawMsg
     
     # Get raw data method
-    def _get_sockMsg(self, server, msg, port=43):
+    def _get_rawMsg(self, server, msg, port=43):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.connect( ( server, port) )
         sendStr = msg + "\r\n"
