@@ -8,45 +8,43 @@ OK = '\033[92m'
 FAIL = '\033[91m'
 ENDC = '\033[0m'
 
-class Query:
-    def __init__(self, domainName):
-        self._domainName = domainName
-        self._rawMsg = ""
-        self._tldName = ""
-        self._whoisSrvAddr = ""
+def query(domainName):
+    rawMsg = ""
+    tldName = ""
+    whoisSrvAddr = ""
 
-        regex = re.compile('.+\..+')
-        match = regex.search(self._domainName)
-        if not match:
-            # Invalid domain
-            self._display_fail("Invalid domain format")
-            return None
+    regex = re.compile('.+\..+')
+    match = regex.search(domainName)
+    if not match:
+        # Invalid domain
+        _display_fail("Invalid domain format")
+        return None
 
-        # Divice TLD
-        regex = re.compile('\..+')
-        match = regex.search(self._domainName)
-        if match:
-            self._tldName = match.group()
-        else:
-            self._display_fail("Can not parse TLD")
-            return None
-        
-        # Get TLD List
-        if not (self._tldName in whoisSrvDict.get_whoisSrvDict()):
-            self._display_fail("Not Found TLD whois server")
-            return None
-
-        self._whoisSrvAddr = whoisSrvDict.get_whoisSrvDict().get(self._tldName)
-        self._rawMsg = whoispy_sock.get_rawMsg(self._whoisSrvAddr , self._domainName, 43)
-        return parser_branch.parse(self._rawMsg, self._whoisSrvAddr)
+    # Divice TLD
+    regex = re.compile('\..+')
+    match = regex.search(domainName)
+    if match:
+        tldName = match.group()
+    else:
+        _display_fail("Can not parse TLD")
+        return None
     
-    # Display method
-    def _display_fail(self, msg):
-        sys.stdout.write( FAIL )
-        sys.stdout.write("%s\n" % msg)
-        sys.stdout.write( ENDC )
-        
-    def _display_safe(self, msg):
-        sys.stdout.write( OK )
-        sys.stdout.write("%s\n" % msg)
-        sys.stdout.write( ENDC )
+    # Get TLD List
+    if not (tldName in whoisSrvDict.get_whoisSrvDict()):
+        _display_fail("Not Found TLD whois server")
+        return None
+
+    whoisSrvAddr = whoisSrvDict.get_whoisSrvDict().get(tldName)
+    rawMsg = whoispy_sock.get_rawMsg(whoisSrvAddr , domainName, 43)
+    return parser_branch.parse(rawMsg, whoisSrvAddr)
+
+# Display method
+def _display_fail(msg):
+    sys.stdout.write( FAIL )
+    sys.stdout.write("%s\n" % msg)
+    sys.stdout.write( ENDC )
+    
+def _display_safe(msg):
+    sys.stdout.write( OK )
+    sys.stdout.write("%s\n" % msg)
+    sys.stdout.write( ENDC )
