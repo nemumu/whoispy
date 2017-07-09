@@ -39,10 +39,6 @@ class Query:
         self._whoisSrvAddr = whoisSrvDict.get_whoisSrvDict().get(self._tldName)
         self._rawMsg = whoispy_sock.get_rawMsg(self._whoisSrvAddr , self._domainName, 43)
         return parser_branch.parse(self._rawMsg, self._whoisSrvAddr)
-        
-    # Get Raw whois data
-    def get_rawData(self):
-        return self._rawMsg
     
     # Display method
     def _display_fail(self, msg):
