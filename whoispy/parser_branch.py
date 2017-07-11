@@ -1,6 +1,6 @@
 import parser_whoisVerisignGrsCom
 
-def parse(rawMsg, whoisSrvAddr):
+def get_parser(rawMsg, whoisSrvAddr):
     if whoisSrvAddr == "whois.verisign-grs.com":
         return parser_whoisVerisignGrsCom.get_parser(rawMsg)
     else:

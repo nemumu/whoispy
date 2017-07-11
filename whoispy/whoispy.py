@@ -36,7 +36,7 @@ def query(domainName):
 
     whoisSrvAddr = whoisSrvDict.get_whoisSrvDict().get(tldName)
     rawMsg = whoispy_sock.get_rawMsg(whoisSrvAddr , domainName, 43)
-    return parser_branch.parse(rawMsg, whoisSrvAddr)
+    return parser_branch.get_parser(rawMsg, whoisSrvAddr)
 
 # Display method
 def _display_fail(msg):
