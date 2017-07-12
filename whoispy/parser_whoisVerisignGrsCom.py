@@ -1,6 +1,7 @@
 import re
 import whoispy_sock
 import parser_whoisEnomCom
+import parser_whoisUniregistrarCom
 
 def get_parser(rawMsg):
     # Parse domain name
@@ -18,13 +19,10 @@ def get_parser(rawMsg):
     registrarWhoisAnswer = whoispy_sock.get_rawMsg(whoisSrvDomain, queryDomain, 43)
     
     # Branch flow for each WHOIS server
-    print(registrarWhoisAnswer)
-    print("")
-    print("")
-    print("")
-
     if whoisSrvDomain == "whois.enom.com":
         return parser_whoisEnomCom.get_parser(registrarWhoisAnswer)
+    elif whoisSrvDomain == "whois.uniregistrar.com":
+        return parser_whoisUniregistrarCom.get_parser(registrarWhoisAnswer)
     return None
 
 def getLine_inHeadStr(headStr, rawMsg):
