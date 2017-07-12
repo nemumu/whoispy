@@ -2,6 +2,7 @@ import re
 import whoispy_sock
 import parser_whoisEnomCom
 import parser_whoisUniregistrarCom
+import parser_whoisGodaddyCom
 
 def get_parser(rawMsg):
     # Parse domain name
@@ -23,6 +24,8 @@ def get_parser(rawMsg):
         return parser_whoisEnomCom.get_parser(registrarWhoisAnswer)
     elif whoisSrvDomain == "whois.uniregistrar.com":
         return parser_whoisUniregistrarCom.get_parser(registrarWhoisAnswer)
+    elif whoisSrvDomain == "whois.godaddy.com":
+        return parser_whoisGodaddyCom.get_parser(registrarWhoisAnswer)
     return None
 
 def getLine_inHeadStr(headStr, rawMsg):
