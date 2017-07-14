@@ -55,7 +55,7 @@ class get_parser(parser_base):
     def adminName(self):
         return self.getLine_inHeadStr('Admin Name')
     def adminOrganization(self):
-        return self.getLine_inHeadStr('Tech Organization')
+        return self.getLine_inHeadStr('Admin Organization')
     def adminStreet(self):
         return self.getLine_inHeadStr('Admin Street')
     def adminCity(self):
