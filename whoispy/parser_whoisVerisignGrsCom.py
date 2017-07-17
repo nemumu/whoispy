@@ -5,6 +5,7 @@ import parser_whoisUniregistrarCom
 import parser_whoisGodaddyCom
 import parser_whois2016JprsJp
 import parser_whoisMarkmonitorCom
+import parser_whoisNetworksolutionsCom
 
 def get_parser(rawMsg):
     # Parse domain name
@@ -32,6 +33,8 @@ def get_parser(rawMsg):
         return parser_whois2016JprsJp.get_parser(registrarWhoisAnswer)
     elif whoisSrvDomain == "whois.markmonitor.com":
         return parser_whoisMarkmonitorCom.get_parser(registrarWhoisAnswer)
+    elif whoisSrvDomain == "whois.networksolutions.com":
+        return parser_whoisNetworksolutionsCom.get_parser(registrarWhoisAnswer)
     return None
 
 def getLine_inHeadStr(headStr, rawMsg):
