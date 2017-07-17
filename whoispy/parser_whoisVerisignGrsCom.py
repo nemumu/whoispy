@@ -4,6 +4,7 @@ import parser_whoisEnomCom
 import parser_whoisUniregistrarCom
 import parser_whoisGodaddyCom
 import parser_whois2016JprsJp
+import parser_whoisMarkmonitorCom
 
 def get_parser(rawMsg):
     # Parse domain name
@@ -29,6 +30,8 @@ def get_parser(rawMsg):
         return parser_whoisGodaddyCom.get_parser(registrarWhoisAnswer)
     elif whoisSrvDomain == "whois2016.jprs.jp":
         return parser_whois2016JprsJp.get_parser(registrarWhoisAnswer)
+    elif whoisSrvDomain == "whois.markmonitor.com":
+        return parser_whoisMarkmonitorCom.get_parser(registrarWhoisAnswer)
     return None
 
 def getLine_inHeadStr(headStr, rawMsg):
