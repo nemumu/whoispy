@@ -1,11 +1,6 @@
 import re
 import whoispy_sock
-import parser_whoisEnomCom
-import parser_whoisUniregistrarCom
-import parser_whoisGodaddyCom
-import parser_whois2016JprsJp
-import parser_whoisMarkmonitorCom
-import parser_whoisNetworksolutionsCom
+import parser_Com
 
 def get_parser(rawMsg):
     # Parse domain name
@@ -22,21 +17,8 @@ def get_parser(rawMsg):
 
     registrarWhoisAnswer = whoispy_sock.get_rawMsg(whoisSrvDomain, queryDomain, 43)
     
-    # Branch flow for each WHOIS server
-    if whoisSrvDomain == "whois.enom.com":
-        return parser_whoisEnomCom.get_parser(registrarWhoisAnswer)
-    elif whoisSrvDomain == "whois.uniregistrar.com":
-        return parser_whoisUniregistrarCom.get_parser(registrarWhoisAnswer)
-    elif whoisSrvDomain == "whois.godaddy.com":
-        return parser_whoisGodaddyCom.get_parser(registrarWhoisAnswer)
-    elif whoisSrvDomain == "whois2016.jprs.jp":
-        return parser_whois2016JprsJp.get_parser(registrarWhoisAnswer)
-    elif whoisSrvDomain == "whois.markmonitor.com":
-        return parser_whoisMarkmonitorCom.get_parser(registrarWhoisAnswer)
-    elif whoisSrvDomain == "whois.networksolutions.com":
-        return parser_whoisNetworksolutionsCom.get_parser(registrarWhoisAnswer)
-    return None
-
+    return parser_Com.get_parser(registrarWhoisAnswer)
+   
 def getLine_inHeadStr(headStr, rawMsg):
     regex = re.compile(headStr + ':.+?\\\\n')
     match = regex.search(rawMsg)
