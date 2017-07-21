@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup( name = "whoispy",
     version = "0.2.2",
-    py_modules = ["whoispy", "whoisSrvDict", "parser_branch", "parser_base", "parser_whoisVerisignGrsCom", "parser_com"],
+    py_modules = ["whoispy", "whoisSrvDict", "parser_branch", "parser_base", "parser_whoisVerisignGrsCom", "parser_general"],
     license = "GPL License",
     description = "Python module/library to get the WHOIS information",
     author = "nemunemu",

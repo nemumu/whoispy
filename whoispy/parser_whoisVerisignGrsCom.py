@@ -1,11 +1,12 @@
 import re
 import whoispy_sock
-import parser_com
+import parser_general
 
 def get_parser(rawMsg):
     # Parse domain name
     queryDomain = getLine_inHeadStr('Domain Name', rawMsg)
     if queryDomain is None:
+        print(rawMsg)
         print('Can not parse [Domain Name]')
         return None
 
@@ -17,7 +18,7 @@ def get_parser(rawMsg):
 
     registrarWhoisAnswer = whoispy_sock.get_rawMsg(whoisSrvDomain, queryDomain, 43)
     
-    return parser_com.get_parser(registrarWhoisAnswer)
+    return parser_general.get_parser(registrarWhoisAnswer)
    
 def getLine_inHeadStr(headStr, rawMsg):
     regex = re.compile(headStr + ':.+?\\\\n')

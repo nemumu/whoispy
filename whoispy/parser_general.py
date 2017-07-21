@@ -2,6 +2,9 @@ import re
 from parser_base import *
 
 '''
+This parser is supporting .com and .net
+
+# Warning
 whois.godaddy.com is limited access count by IP addr
 '''
 
