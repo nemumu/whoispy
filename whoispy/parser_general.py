@@ -143,7 +143,7 @@ class get_parser(parser_base):
         
     def getLine_inHeadStr(self, headStrs):
         matchGroup = self.getGroup_inHeadStr(headStrs)
-        if matchGroup is not None:
+        if matchGroup is not None and len(matchGroup) > 0:
             return matchGroup[0]
         return None
 
