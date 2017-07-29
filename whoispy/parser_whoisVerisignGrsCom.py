@@ -6,12 +6,11 @@ def get_parser(rawMsg):
     # Parse domain name
     queryDomain = getLine_inHeadStr('Domain Name', rawMsg)
     if queryDomain is None:
-        print(rawMsg)
         print('Can not parse [Domain Name]')
         return None
 
     # Parse WHOIS server
-    whoisSrvDomain = getLine_inHeadStr('Whois Server', rawMsg)
+    whoisSrvDomain = getLine_inHeadStr('Registrar WHOIS Server', rawMsg)
     if whoisSrvDomain is None:
         print('Can not parse [Whois Server]')
         return None
