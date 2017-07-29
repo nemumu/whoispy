@@ -121,7 +121,7 @@ class get_parser(parser_base):
     def techEmail(self):
         return self.getLine_inHeadStr(['Tech Email'])
     def nameServer(self):
-        return self.getLine_inHeadStr(['Name Server'])
+        return self.getGroup_inHeadStr(['Name Server'])
     def DNSSEC(self):
         return self.getLine_inHeadStr(['DNSSEC'])
     def registrarAbuseContactEmail(self):
@@ -141,18 +141,21 @@ class get_parser(parser_base):
             return retDate
         return None
         
-
     def getLine_inHeadStr(self, headStrs):
+        matchGroup = self.getGroup_inHeadStr(headStrs)
+        if matchGroup is not None:
+            return matchGroup[0]
+        return None
+
+    def getGroup_inHeadStr(self,headStrs):
         for headStr in headStrs:
             regex = re.compile(headStr + ':.*?\\\\n')
-            match = regex.search(self.rawMsg)
-
+            match = regex.findall(self.rawMsg)
             if match is not None:
-                matchStr = match.group(0)
-                matchStr = matchStr.replace(headStr + ':', '')
-                matchStr = re.sub(r'^ ', '', matchStr)
-                matchStr = matchStr.replace('\\n', '')
-                matchStr = matchStr.replace('\\r', '')
-
-                return matchStr
+                for i in range(len(match)):
+                    match[i] = match[i].replace(headStr + ':', '')
+                    match[i] = re.sub(r'^ ', '', match[i])
+                    match[i] = match[i].replace('\\n', '')
+                    match[i] = match[i].replace('\\r', '')
+                return match
         return None
