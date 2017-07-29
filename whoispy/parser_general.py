@@ -1,4 +1,3 @@
-import re
 from parser_base import *
 
 '''
@@ -23,11 +22,20 @@ class get_parser(parser_base):
     def registrarURL(self):
         return self.getLine_inHeadStr(['Registrar URL'])
     def updatedDate(self):
-        return self.getLine_inHeadStr(['Updated Date', 'Update Date'])
+        updatedDateStr = self.getLine_inHeadStr(['Updated Date', 'Update Date'])
+        if updatedDateStr is None:
+            return None
+        return self.getDateFromDateStr(updatedDateStr)
     def creationDate(self):
-        return self.getLine_inHeadStr(['Creation Date'])
+        creationDateStr = self.getLine_inHeadStr(['Creation Date'])
+        if creationDateStr is None:
+            return None
+        return self.getDateFromDateStr(creationDateStr)
     def registrarRegistrationExpirationDate(self):
-        return self.getLine_inHeadStr(['Registrar Registration Expiration Date'])
+        expireDateStr =  self.getLine_inHeadStr(['Registrar Registration Expiration Date'])
+        if expireDateStr is None:
+            return None
+        return self.getDateFromDateStr(expireDateStr)
     def registrar(self):
         return self.getLine_inHeadStr(['Registrar'])
     def registrarIANAID(self):
@@ -122,6 +130,17 @@ class get_parser(parser_base):
         return self.getLine_inHeadStr(['Registrar Abuse Contact Phone'])
     def urlOfTheICANNWHOISDataProblemReportingSystem(self):
         return self.getLine_inHeadStr(['URL of the ICANN WHOIS Data Problem Reporting System'])
+
+    def getDateFromDateStr(self, dateStr):
+        regex = re.compile('\d+-\d+-\d+-?T\d+:\d+:\d+')
+        match = regex.search(dateStr)
+        if match is not None:
+            matchDateStr = match.group(0)
+            matchDateStr = matchDateStr.replace('-T', 'T')
+            retDate = datetime.strptime(matchDateStr, '%Y-%m-%dT%H:%M:%S')
+            return retDate
+        return None
+        
 
     def getLine_inHeadStr(self, headStrs):
         for headStr in headStrs:
