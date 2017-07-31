@@ -32,7 +32,7 @@ class get_parser(parser_base):
             return None
         return self.getDateFromDateStr(creationDateStr)
     def registrarRegistrationExpirationDate(self):
-        expireDateStr =  self.getLine_inHeadStr(['Registrar Registration Expiration Date'])
+        expireDateStr =  self.getLine_inHeadStr(['Registrar Registration Expiration Date', 'Registry Expiry Date'])
         if expireDateStr is None:
             return None
         return self.getDateFromDateStr(expireDateStr)
@@ -129,7 +129,7 @@ class get_parser(parser_base):
     def registrarAbuseContactPhone(self):
         return self.getLine_inHeadStr(['Registrar Abuse Contact Phone'])
     def urlOfTheICANNWHOISDataProblemReportingSystem(self):
-        return self.getLine_inHeadStr(['URL of the ICANN WHOIS Data Problem Reporting System'])
+        return self.getLine_inHeadStr(['URL of the ICANN WHOIS Data Problem Reporting System', 'URL of the ICANN Whois Inaccuracy Complaint Form'])
 
     def getDateFromDateStr(self, dateStr):
         regex = re.compile('\d+-\d+-\d+-?T\d+:\d+:\d+')
@@ -140,7 +140,7 @@ class get_parser(parser_base):
             retDate = datetime.strptime(matchDateStr, '%Y-%m-%dT%H:%M:%S')
             return retDate
         return None
-        
+
     def getLine_inHeadStr(self, headStrs):
         matchGroup = self.getGroup_inHeadStr(headStrs)
         if matchGroup is not None and len(matchGroup) > 0:
@@ -148,6 +148,7 @@ class get_parser(parser_base):
         return None
 
     def getGroup_inHeadStr(self,headStrs):
+        ret_match = None
         for headStr in headStrs:
             regex = re.compile(headStr + ':.*?\\\\n')
             match = regex.findall(self.rawMsg)
@@ -157,5 +158,6 @@ class get_parser(parser_base):
                     match[i] = re.sub(r'^ ', '', match[i])
                     match[i] = match[i].replace('\\n', '')
                     match[i] = match[i].replace('\\r', '')
-                return match
-        return None
+                if len(match) > 0 and (match[0] != '' or ret_match is None):
+                   ret_match = match
+        return ret_match
